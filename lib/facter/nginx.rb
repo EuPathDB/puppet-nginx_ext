@@ -27,7 +27,7 @@ def nginx_vhosts
   if ! nginx_cmd.nil?
     namevhost = nil
     vhcmd = "find " + nginx_valid_paths($nginx_conf_search_path).join(' ') + 
-            " -type f -name '*.conf' -print0" +
+            " -type f \\( -name '*.conf' -o -name '*.incl' \\) -print0" +
             " | xargs -0 egrep -l '^(\s|\t)*server_name'"
 
     # find all conf files containing 'server_name'
